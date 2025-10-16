@@ -1,0 +1,16 @@
+ATM para çekme sistemi için detaylı bir pseudocode yazmanı istiyorum. Şunları içermeli: PIN doğrulama (3 hak), bakiye kontrolü, tutar kontrolü (20 TL katları), günlük limit kontrolü, işlem tekrarı seçeneği. Tüm adımları BAŞLA, OKU, YAZ, EĞER-İSE, DÖNGÜ yapılarıyla yaz.
+
+Elbette Mert! İşte ATM para çekme sistemi için detaylı bir pseudocode. Tüm adımlar BAŞLA, OKU, YAZ, EĞER-İSE, DÖNGÜ yapılarıyla yazıldı ve senin belirttiğin tüm kontrolleri içeriyor:
+(Pseudocode)
+
+Bu pseudocode’u Graphviz DOT diline çevir. Başla/Bitir için oval, girdi/çıktı için paralelkenar, işlem için kutu, karar için elmas kullan. Tüm okları ve etiketleri ekle.
+
+Harika Mert! İşte ATM para çekme sisteminin Graphviz DOT diline çevrilmiş hali. Şekillerin türleri senin istediğin gibi:
+
+🟠 Oval → Başla/Bitir
+
+🔷 Elmas → Karar (EĞER-İSE)
+
+🟪 Paralelkenar → Girdi/Çıktı (OKU/YAZ)
+
+🟩 Kutu → İşlem
