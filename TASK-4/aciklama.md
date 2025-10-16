@@ -1,3 +1,1 @@
-
-
-sistemin kısa açıklaması (maks. 5-6 satır)
+AD-SOYAD:İsmet Mert Uysal ÖĞRENCİ NO:250542017 sistemin kısa açıklaması (maks. 5-6 satır) Bu diyagram, üniversite ders kayıt sürecini adım adım görselleştirir. Öğrenci giriş yaptıktan sonra sistem kontenjan, ön koşul, zaman çakışması ve kredi limitini kontrol eder. Her kontrol noktası diamond şekliyle karar yapısı olarak gösterilir. Hatalar varsa işlem durur, yoksa danışman onayıyla kayıt tamamlanır. Akış yukarıdan aşağıya ilerler ve tüm mantıksal kontrolleri açıkça gösterir.
