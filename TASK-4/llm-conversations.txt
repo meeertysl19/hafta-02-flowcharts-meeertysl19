@@ -1,0 +1,17 @@
+Üniversite ders kayıt sisteminin genel akışını açıkla: giriş, ders listesi, ders seçimi, kontroller, onaylama.
+
+Üniversite ders kayıt sisteminin genel akışı, öğrencilerin dönem başında derslerini seçip kayıtlarını tamamlamalarını sağlayan adımlardan oluşur. İşte bu sürecin temel aşamaları:
+
+Ders kaydında yapılması gereken kontrolleri listele: kontenjan, ön koşul, zaman çakışması, kredi limiti, danışman onayı.
+
+Elbette Mert! Ders kaydında yapılması gereken kontrolleri adım adım ve net şekilde aşağıda listeliyorum. Bu kontroller, öğrencinin ders seçimlerinin akademik ve sistemsel olarak uygunluğunu sağlar:
+
+Tüm bu kontrollerle birlikte detaylı pseudocode yaz. İç içe EĞER–İSE yapıları ve döngüleri kullan.
+
+Harika Mert! Aşağıda, üniversite ders kayıt sisteminde yapılması gereken tüm kontrolleri içeren detaylı bir pseudocode örneği hazırladım. İç içe EĞER–İSE yapıları ve döngüler kullanarak adım adım ilerledim. Bu yapı, algoritmik düşünme becerini pekiştirmek için birebir 👇
+(pseudocode)
+
+Bu pseudocode’u Graphviz DOT diline çevir. Her kontrol noktasını diamond ile göster.
+
+Mert! Aşağıda, önceki pseudocode’u temel alarak Graphviz DOT diline çevirdim. Her kontrol noktası diamond (karar) şeklinde tanımlandı. Bu yapı, akış diyagramı olarak görselleştirildiğinde algoritmanın mantığını net biçimde ortaya koyar:
+(dot code)
