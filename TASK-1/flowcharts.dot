@@ -1,0 +1,42 @@
+digraph ATM {
+    rankdir=LR;
+    node [shape=box];
+
+    Start -> KartTakildi [label="Kartınızı takınız"]
+    KartTakildi -> KartOkundu [label="Evet"]
+    KartTakildi -> KartYok [label="Hayır"]
+    KartYok -> End [label="İşlem iptal"]
+
+    KartOkundu -> PINGir [label="Kart okundu\nPIN giriniz"]
+    PINGir -> PINDogru [label="Doğru PIN"]
+    PINGir -> PINYanlis1 [label="Yanlış PIN (1)"]
+    PINYanlis1 -> PINGir [label="Kalan hak: 2"]
+    PINYanlis1 -> PINYanlis2 [label="Yanlış PIN (2)"]
+    PINYanlis2 -> PINGir [label="Kalan hak: 1"]
+    PINYanlis2 -> PINBloke [label="Yanlış PIN (3)"]
+    PINBloke -> End [label="Kart iade"]
+
+    PINDogru -> Menu
+
+    Menu -> ParaCekme [label="1) Para Çekme"]
+    Menu -> BakiyeGor [label="2) Bakiye Görüntüle"]
+    Menu -> Cikis [label="3) Çıkış"]
+    Menu -> Menu [label="Geçersiz seçim"]
+
+    ParaCekme -> TutarKontrol [label="Tutar gir"]
+    TutarKontrol -> LimitKontrol
+    LimitKontrol -> BakiyeKontrol
+    BakiyeKontrol -> ParaVer [label="Uygun"]
+    ParaVer -> FisSor
+    FisSor -> Menu [label="Fiş E/H"]
+
+    BakiyeGor -> Menu [label="Bakiye göster"]
+
+    Cikis -> End [label="Kart iade"]
+
+    Menu -> TekrarSor [label="Başka işlem?"]
+    TekrarSor -> Menu [label="Evet"]
+    TekrarSor -> End [label="Hayır"]
+
+    End [shape=ellipse, label="Oturum Sonu"]
+}
