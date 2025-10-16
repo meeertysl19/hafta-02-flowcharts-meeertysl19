@@ -1,0 +1,73 @@
+digraph E_TICARET_SISTEMI {
+  rankdir=TB;
+  node [shape=box];
+
+  START [label="BAŞLA E-TICARET_SISTEMI"];
+  GIRIS [label="KULLANICI GİRİŞİ"];
+  GIRIS_KONTROL [label="Giriş bilgileri doğru mu?", shape=diamond];
+  GIRIS_EVET [label="Giriş başarılı"];
+  GIRIS_HAYIR [label="Giriş hatalı"];
+
+  URUN_EKLE [label="ÜRÜN EKLEME"];
+  STOK_KONTROL [label="Stok var mı?", shape=diamond];
+  STOK_EVET [label="Sepete ekle"];
+  STOK_HAYIR [label="Ürün stokta yok"];
+
+  SEPET_YONETIMI [label="SEPET YÖNETİMİ"];
+  INDIRIM_KODU [label="İndirim kodu girildi mi?", shape=diamond];
+  KOD_GECERLI [label="Kod geçerli mi?", shape=diamond];
+  KOD_EVET [label="İndirim uygula"];
+  KOD_HAYIR [label="Kod geçersiz"];
+
+  KARGO [label="KARGO HESAPLAMA"];
+  KARGO_UCRETI [label="Sepet tutarı > eşik?", shape=diamond];
+  KARGO_UCRETSIZ [label="Kargo ücretsiz"];
+  KARGO_NORMAL [label="Kargo ücreti hesapla"];
+
+  ODEME [label="ÖDEME AŞAMALARI"];
+  ODEME_YONTEMI [label="Ödeme yöntemi: Kredi kartı mı?", shape=diamond];
+  KART_KONTROL [label="Kart geçerli mi?", shape=diamond];
+  KART_EVET [label="Ödeme onayla"];
+  KART_HAYIR [label="Kart geçersiz"];
+  KAPIDA_ODEME [label="Kapıda ödeme seçildi → Onayla"];
+
+  SIPARIS [label="SİPARİŞ TAMAMLAMA"];
+  BITIS [label="BİTİR E-TICARET_SISTEMİ"];
+
+  // Akış bağlantıları
+  START -> GIRIS;
+  GIRIS -> GIRIS_KONTROL;
+  GIRIS_KONTROL -> GIRIS_EVET [label="EVET"];
+  GIRIS_KONTROL -> GIRIS_HAYIR [label="HAYIR"];
+  GIRIS_EVET -> URUN_EKLE;
+  URUN_EKLE -> STOK_KONTROL;
+  STOK_KONTROL -> STOK_EVET [label="EVET"];
+  STOK_KONTROL -> STOK_HAYIR [label="HAYIR"];
+  STOK_EVET -> SEPET_YONETIMI;
+  STOK_HAYIR -> SEPET_YONETIMI;
+
+  SEPET_YONETIMI -> INDIRIM_KODU;
+  INDIRIM_KODU -> KOD_GECERLI [label="EVET"];
+  INDIRIM_KODU -> KARGO [label="HAYIR"];
+  KOD_GECERLI -> KOD_EVET [label="EVET"];
+  KOD_GECERLI -> KOD_HAYIR [label="HAYIR"];
+  KOD_EVET -> KARGO;
+  KOD_HAYIR -> KARGO;
+
+  KARGO -> KARGO_UCRETI;
+  KARGO_UCRETI -> KARGO_UCRETSIZ [label="EVET"];
+  KARGO_UCRETI -> KARGO_NORMAL [label="HAYIR"];
+  KARGO_UCRETSIZ -> ODEME;
+  KARGO_NORMAL -> ODEME;
+
+  ODEME -> ODEME_YONTEMI;
+  ODEME_YONTEMI -> KART_KONTROL [label="EVET"];
+  ODEME_YONTEMI -> KAPIDA_ODEME [label="HAYIR"];
+  KART_KONTROL -> KART_EVET [label="EVET"];
+  KART_KONTROL -> KART_HAYIR [label="HAYIR"];
+  KART_EVET -> SIPARIS;
+  KAPIDA_ODEME -> SIPARIS;
+  KART_HAYIR -> SIPARIS;
+
+  SIPARIS -> BITIS;
+}
