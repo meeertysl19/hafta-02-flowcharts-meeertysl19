@@ -1,0 +1,50 @@
+
+digraph AkilliEvGuvenlik {
+    node [style=filled, fontname="Arial"]
+
+    Start [label="BAŞLA", shape=ellipse, fillcolor=lightblue]
+    Loop [label="WHILE SistemDurumu = 'AKTİF'", shape=box, fillcolor=lightgray]
+
+    SensorOkuma [label="Sensörleri oku:\nHareket, Kapı, Cam, Duman, Su", shape=box, fillcolor=white]
+
+    HareketKontrol [label="Hareket var mı\nve Ev boş mu?", shape=diamond, fillcolor=lightyellow]
+    KapıKontrol [label="Kapı gece açık mı?", shape=diamond, fillcolor=lightyellow]
+    CamKontrol [label="Cam kırık mı?", shape=diamond, fillcolor=lightyellow]
+    DumanKontrol [label="Duman seviyesi yüksek mi?", shape=diamond, fillcolor=lightyellow]
+    SuKontrol [label="Su baskını var mı?", shape=diamond, fillcolor=lightyellow]
+
+    TehditVar [label="Tehdit algılandı", shape=box, fillcolor=mistyrose]
+    AlarmVer [label="Alarm ver:\nSesli + Işıklı", shape=box, fillcolor=red]
+    KameraKaydet [label="Kamera kaydı başlat", shape=box, fillcolor=orange]
+    BildirimGonder [label="Bildirim gönder", shape=box, fillcolor=yellow]
+    LogKaydet [label="Log kaydet", shape=box, fillcolor=lightgreen]
+
+    DurumNormal [label="Durum normal\nLogla", shape=box, fillcolor=lightgray]
+    Bekle [label="5 saniye bekle", shape=box, fillcolor=lightblue]
+
+    End [label="DUR", shape=ellipse, fillcolor=lightblue]
+
+    // Akışlar
+    Start -> Loop
+    Loop -> SensorOkuma
+    SensorOkuma -> HareketKontrol
+    HareketKontrol -> TehditVar [label="EVET"]
+    HareketKontrol -> KapıKontrol [label="HAYIR"]
+    KapıKontrol -> TehditVar [label="EVET"]
+    KapıKontrol -> CamKontrol [label="HAYIR"]
+    CamKontrol -> TehditVar [label="EVET"]
+    CamKontrol -> DumanKontrol [label="HAYIR"]
+    DumanKontrol -> TehditVar [label="EVET"]
+    DumanKontrol -> SuKontrol [label="HAYIR"]
+    SuKontrol -> TehditVar [label="EVET"]
+    SuKontrol -> DurumNormal [label="HAYIR"]
+
+    TehditVar -> AlarmVer
+    AlarmVer -> KameraKaydet
+    KameraKaydet -> BildirimGonder
+    BildirimGonder -> LogKaydet
+    LogKaydet -> Bekle
+
+    DurumNormal -> Bekle
+    Bekle -> Loop
+}
