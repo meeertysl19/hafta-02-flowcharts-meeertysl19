@@ -1,0 +1,42 @@
+digraph SaglikSistemi {
+  rankdir=LR;
+  node [shape=box, style=filled, color=lightblue];
+
+  Start -> KimlikDogrulama
+  KimlikDogrulama -> AnaMenu [label="Geçerli"]
+  KimlikDogrulama -> Hata [label="Geçersiz"]
+
+  AnaMenu -> Randevu [label="1 - Randevu Al"]
+  AnaMenu -> Tahlil [label="2 - Tahlil Sonucu"]
+  AnaMenu -> Cikis [label="3 - Çıkış"]
+
+  // Randevu Sistemi
+  Randevu -> PoliklinikSecimi
+  PoliklinikSecimi -> DoktorSecimi
+  DoktorSecimi -> SaatSecimi
+  SaatSecimi -> RandevuOnay
+  RandevuOnay -> RandevuKaydet [label="Onaylandı"]
+  RandevuOnay -> AnaMenu [label="İptal"]
+
+  RandevuKaydet -> SMSGonder
+  SMSGonder -> AnaMenu
+
+  // Tahlil Sistemi
+  Tahlil -> TahlilKontrol
+  TahlilKontrol -> SonucHazir [label="Sonuç Hazır"]
+  TahlilKontrol -> BeklemeMesaji [label="Sonuç Bekleniyor"]
+
+  SonucHazir -> GoruntulemeSecimi
+  GoruntulemeSecimi -> PDFSecimi [label="Görüntüle"]
+  GoruntulemeSecimi -> AnaMenu [label="İptal"]
+
+  PDFSecimi -> PDFIndir [label="İndir"]
+  PDFSecimi -> AnaMenu [label="Hayır"]
+
+  PDFIndir -> AnaMenu
+
+  // Diğer
+  Hata -> End
+  Cikis -> End
+  BeklemeMesaji -> AnaMenu
+}
