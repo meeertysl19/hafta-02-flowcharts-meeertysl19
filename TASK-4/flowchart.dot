@@ -1,0 +1,70 @@
+digraph DersKayitKontrol {
+    node [shape=box, style=filled, fillcolor=lightgray]
+    
+    Start [label="BAŞLA"]
+    LoopStart [label="HER ders IN ÖğrenciDersListesi"]
+    
+    KontenjanKontrol [label="Kontenjan dolu mu?", shape=diamond]
+    KontenjanHata [label="Hata: Kontenjan dolu", fillcolor=mistyrose]
+    
+    OnKosulVarMi [label="Ön koşul var mı?", shape=diamond]
+    OnKosulKontrol [label="Ön koşul sağlandı mı?", shape=diamond]
+    OnKosulHata [label="Hata: Ön koşul eksik", fillcolor=mistyrose]
+    
+    ZamanCakismaKontrol [label="Zaman çakışması var mı?", shape=diamond]
+    ZamanCakismaHata [label="Hata: Zaman çakışması", fillcolor=mistyrose]
+    
+    KrediTopla [label="Toplam krediye ekle"]
+    
+    LoopEnd [label="SONRAKİ derse geç"]
+    
+    KrediLimitKontrol [label="Kredi limiti aşıldı mı?", shape=diamond]
+    KrediLimitHata [label="Hata: Kredi limiti aşıldı", fillcolor=mistyrose]
+    
+    DanismanOnay [label="Danışman onayladı mı?", shape=diamond]
+    KayitBasarili [label="Ders kaydı tamamlandı", fillcolor=lightgreen]
+    OnayBekleniyor [label="Danışman onayı bekleniyor", fillcolor=lightyellow]
+    
+    HatalarVarMi [label="Hata var mı?", shape=diamond]
+    HatalariYaz [label="Hataları göster", fillcolor=mistyrose]
+    KayitBasarisiz [label="Ders kaydı başarısız", fillcolor=lightcoral]
+    
+    End [label="DUR"]
+
+    // Akışlar
+    Start -> LoopStart
+    LoopStart -> KontenjanKontrol
+    KontenjanKontrol -> KontenjanHata [label="EVET"]
+    KontenjanKontrol -> OnKosulVarMi [label="HAYIR"]
+    
+    OnKosulVarMi -> OnKosulKontrol [label="EVET"]
+    OnKosulVarMi -> ZamanCakismaKontrol [label="HAYIR"]
+    
+    OnKosulKontrol -> OnKosulHata [label="HAYIR"]
+    OnKosulKontrol -> ZamanCakismaKontrol [label="EVET"]
+    
+    ZamanCakismaKontrol -> ZamanCakismaHata [label="EVET"]
+    ZamanCakismaKontrol -> KrediTopla [label="HAYIR"]
+    
+    KrediTopla -> LoopEnd
+    KontenjanHata -> LoopEnd
+    OnKosulHata -> LoopEnd
+    ZamanCakismaHata -> LoopEnd
+    LoopEnd -> KrediLimitKontrol [label="TÜM DERSLER TAMAM"]
+    
+    KrediLimitKontrol -> KrediLimitHata [label="EVET"]
+    KrediLimitKontrol -> HatalarVarMi [label="HAYIR"]
+    
+    KrediLimitHata -> HatalarVarMi
+    HatalarVarMi -> HatalariYaz [label="EVET"]
+    HatalarVarMi -> DanismanOnay [label="HAYIR"]
+    
+    HatalariYaz -> KayitBasarisiz
+    KayitBasarisiz -> End
+    
+    DanismanOnay -> KayitBasarili [label="EVET"]
+    DanismanOnay -> OnayBekleniyor [label="HAYIR"]
+    
+    KayitBasarili -> End
+    OnayBekleniyor -> End
+}
