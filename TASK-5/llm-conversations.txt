@@ -1,0 +1,9 @@
+Akıllı ev güvenlik sistemi 7/24 çalışır. Ana döngü içinde sensör okuma, tehdit algılama, alarm verme ve bildirim gönderme süreçlerini içeren pseudocode yaz.
+(pseudocode)
+
+Elbette Mert! Aşağıda, akıllı ev güvenlik sisteminin 7/24 çalışan bir ana döngü içinde nasıl çalıştığını gösteren detaylı bir pseudocode örneği hazırladım. Bu yapı, sensör okuma, tehdit algılama, alarm verme ve bildirim gönderme adımlarını içeriyor ve sürekli çalışan bir sistem mantığıyla yazıldı:
+
+DOT KODUNU YAZ.
+(dot code)
+
+Tabii Mert! Aşağıda, akıllı ev güvenlik sistemi için yazdığımız pseudocode’un Graphviz DOT diline çevrilmiş halini bulabilirsin. Her kontrol noktası diamond (karar) şeklinde gösterildi ve sistemin 7/24 çalıştığı bir ana döngü içinde sensör okuma, tehdit algılama, alarm verme ve bildirim gönderme adımları yer aldı:
